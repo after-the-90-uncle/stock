@@ -1,0 +1,33 @@
+html,body,#app{
+	height: 100%;
+}
+.ant-layout{
+	height: 100%;
+}
+.menu-trigger{
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+#app .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color .3s;
+}
+
+#app .trigger:hover {
+  color: #1890ff;
+}
+
+#app .logo {
+  height: 32px;
+  line-height: 32px;
+  background: rgba(255,255,255,.2);
+  margin: 16px;
+  font-size:18px;
+  color:#fff;
+  text-align: center;
+  overflow: hidden;
+}
