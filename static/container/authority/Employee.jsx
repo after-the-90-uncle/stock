@@ -7,7 +7,6 @@ export default class Employee extends Component {
 	}
 
 	render(){
-		console.log(this.props , "========Employee")
 		return (
 			<div onClick={() => {
 				this.props.history.push('/login')

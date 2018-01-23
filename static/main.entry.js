@@ -23,8 +23,8 @@ const render = Component => {
   ReactDOM.render(
     <AppContainer>
     	<Provider store={store}>
-      		<Component />
-      	</Provider>
+      		<Component store={store} />
+      </Provider>
     </AppContainer>,
     document.getElementById('app'),
   )
