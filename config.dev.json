@@ -1,4 +1,12 @@
 {
-  "host": "47.94.0.137",
-  "port":"8080"
+  "mysql":{
+    "host": "localhost",
+    "user": "demo",
+    "password": "demo",
+    "database": "yunzhi"
+  },
+  "api":{
+  	"host": "47.94.0.137",
+    "port":"8080"
+  }
 }

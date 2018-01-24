@@ -35,7 +35,7 @@ export default class Navigator extends React.PureComponent {
 		}else if(le == 2){
 			select.defaultOpenKeys = [path[0]];
 			select.defaultSelectedKeys = [selectMenu];
-		}
+		} 
 		return select;
 	}
 

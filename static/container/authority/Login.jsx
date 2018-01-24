@@ -8,6 +8,8 @@ const FormItem = Form.Item;
 
 import cookie from 'utils/cookie';
 
+import api from 'services/api';
+
 class Login extends Component {
 
   static displayName = 'Login';
@@ -32,7 +34,8 @@ class Login extends Component {
   
   async login(values){
     let {dispatch,actions,redirectPath} = this.props;
-    
+    // let ad = await api('/authority/login');
+    // console.log(ad) ; 
     await dispatch(actions.user.login({...values}))
   }
 
