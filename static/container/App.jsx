@@ -12,6 +12,8 @@ import {message} from 'antd';
 
 import Navigator from 'common/Navigator';
 
+import api from 'services/api';
+
 import 'antd.css';
 
 message.config({
@@ -22,6 +24,21 @@ message.config({
 export default class App extends React.Component{
     constructor(props, context){
       super(props, context);
+      this.state={
+        isCheck:true,
+      }
+    }
+
+    async componentWillMount(){
+      await this.initUserState()
+    }
+
+    async initUserState(){
+      let result = await api('/authority/initLogin');
+      this.setState({isCheck:false})
+      if(result.success){
+        await this.props.store.dispatch(actions.user.login({...result.data}))
+      }
     }
 
     initComponent(item){
@@ -35,7 +52,8 @@ export default class App extends React.Component{
     }
 
     render(){
-
+        let {isCheck} = this.state;
+        if(isCheck) return null;
         return (
           <Navigator ref='navigator' >
             <BrowserRouter

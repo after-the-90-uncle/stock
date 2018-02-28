@@ -1,7 +1,7 @@
 import React , {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-import { Card ,Row, Col, Form, Icon, Input, Button,Checkbox} from 'antd';
+import { Card ,Row, Col, Form, Icon, Input, Button,Checkbox,message} from 'antd';
 import './styles/login.css';
 
 const FormItem = Form.Item;
@@ -34,9 +34,15 @@ class Login extends Component {
   
   async login(values){
     let {dispatch,actions,redirectPath} = this.props;
-    // let ad = await api('/authority/login');
-    // console.log(ad) ; 
-    await dispatch(actions.user.login({...values}))
+    let result = await api('/authority/login',{...values});
+    if(!result.success){
+      message.error(result.error.msg);
+      return
+    }
+    message.success('登录成功',1,async () => {
+      await dispatch(actions.user.login({...result.data}))
+    })
+    
   }
 
   handleSubmit = (e) => {
@@ -56,10 +62,13 @@ class Login extends Component {
         <Card hoverable={true} type="inner" style={{padding:'20px 0'}}>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <FormItem>
-              {getFieldDecorator('userName', {
-                rules: [{ required: true, message: '请输入用户名' }],
+              {getFieldDecorator('phone', {
+                rules: [
+                  { required: true, message: '请输入手机号' },
+                  {pattern:new RegExp('^1\\d{10}'),message:'手机号格式不正确'}
+                ],
               })(
-                <Input prefix={<Icon type="user" className='icon-style' />} placeholder="请输入用户名" />
+                <Input prefix={<Icon type="user" className='icon-style' />} placeholder="请输入手机号" />
               )}
             </FormItem>
             <FormItem>

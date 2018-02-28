@@ -3,7 +3,7 @@
     "host": "localhost",
     "user": "demo",
     "password": "demo",
-    "database": "yunzhi"
+    "database": "stock"
   },
   "api":{
   	"host": "47.94.0.137",
