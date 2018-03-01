@@ -56,11 +56,7 @@ export default class Navigator extends React.PureComponent {
 		},1)
 		
 	}
-
-	getCookie(){
-
-	}
-
+	
 	//导航选中事件
 	onSelect = (params) => {
 		cookie({selectMenu:params.key});
@@ -114,9 +110,11 @@ export default class Navigator extends React.PureComponent {
 
 	render(){
 		let {children} = this.props;
+		console.log(children)
 		if(this.state.isLoginPage){
 			return children
 		}
+		console.log('---navigatorMenu')
 		let {defaultOpenKeys,defaultSelectedKeys} = this.state;
 		return (
 			<FadeIn style={{width:'100%',height:'100%'}} duration=".75s" timingFunction="ease-out">

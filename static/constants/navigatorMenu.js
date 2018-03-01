@@ -1,16 +1,16 @@
 let navigatorMenu = [
-	{
-		key:'user',
-		icon:'user' , 
-		name:'管理员',
-		subMenu:[
-			{key:'user/juese', name:'角色' , url:'/authority/employee'},
-			{key:'user/glry', name:'管理人员',url:'/home'},
-			{key:'user/qx', name:'权限'},
-		]
-	},
-	{key:'caidan2',icon:'video-camera' , name:'菜单二'},
-	{key:'caidan3',icon:'upload' , name:'菜单三'},
+	// {
+	// 	key:'user',
+	// 	icon:'user' , 
+	// 	name:'管理员',
+	// 	subMenu:[
+	// 		{key:'user/juese', name:'角色' , url:'/authority/employee'},
+	// 		{key:'user/glry', name:'管理人员',url:'/home'},
+	// 		{key:'user/qx', name:'权限'},
+	// 	]
+	// },
+	{key:'/admin',icon:'admin' , name:'管理员'},
+	{key:'user',icon:'user' , name:'用户',url:'/user/list'},
 ]
 
 function packMap(menus){
