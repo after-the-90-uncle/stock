@@ -5,8 +5,8 @@ import { Table, Button,Divider,Modal,message } from 'antd';
 import api from 'services/api';
 
 import UserEdit from './UserEdit';
-
-
+import PropTypes from 'prop-types';
+console.log(PropTypes)
 export default class User extends Component{
 
 	constructor(props,context){
@@ -26,7 +26,7 @@ export default class User extends Component{
 	}
 
 	componentDidMount(){
-		console.log('======user')
+		console.log(this)
 		this.doFetch(1,10)
 	}
 
@@ -84,8 +84,8 @@ export default class User extends Component{
 			  render: (text, record) => (
 			    <span>
 			      <a href="#" onClick={() => {
-			      	console.log(this.props)
-			      	{/*this.props.history.push({pathname:'/user/refund',query:{id:record.id}})*/}
+			      	{/*this.context.router.history.push({pathname:'/user/refund',state:{id:1}})*/}
+			      	this.props.history.push('/user/refund?id='+record.id)
 			      }}>查看还款记录</a>
 			      <Divider type="vertical" />
 			      <a href="#" onClick={this.editUser.bind(this,record)}>编辑</a>
@@ -157,3 +157,13 @@ export default class User extends Component{
 		)
 	}
 }
+User.contextTypes= { router: PropTypes.object.isRequired};
+// User.contextTypes = {
+//   router: PropTypes.shape({
+//     history: PropTypes.shape({
+//       push: PropTypes.func.isRequired,
+//       replace: PropTypes.func.isRequired,
+//       createHref: PropTypes.func.isRequired
+//     }).isRequired
+//   }).isRequired
+// };

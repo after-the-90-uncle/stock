@@ -18,14 +18,13 @@ export default class Navigator extends React.PureComponent {
 		super(props,context);
 		this.state = {
 			collapsed: false,
-			isLoginPage:true,
+			isLoginPage:false,
 			...this.handleSelectMenu()
 		}
 
 	}
 
 	handleSelectMenu(){
-		console.log(location.pathname , "=====location.pathname")
 		let selectMenu = urlMapKey[location.pathname]||urlMapKey[cookie('selectMenu')||'']||'',
 		    path = selectMenu.split('/'),
 			select = {},
@@ -66,7 +65,8 @@ export default class Navigator extends React.PureComponent {
 		}
 		let href = params.item.props.href;
 		if(href){
-			this.context.history.push(href);
+			console.log(this)
+			// this.context.history.push(href);
 		}
 		
 	}
@@ -110,11 +110,10 @@ export default class Navigator extends React.PureComponent {
 
 	render(){
 		let {children} = this.props;
-		console.log(children)
 		if(this.state.isLoginPage){
 			return children
 		}
-		console.log('---navigatorMenu')
+		console.log(children)
 		let {defaultOpenKeys,defaultSelectedKeys} = this.state;
 		return (
 			<FadeIn style={{width:'100%',height:'100%'}} duration=".75s" timingFunction="ease-out">

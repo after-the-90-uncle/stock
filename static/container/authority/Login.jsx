@@ -40,7 +40,7 @@ class Login extends Component {
       return
     }
     message.success('登录成功',1,async () => {
-      await dispatch(actions.user.login({...result.data}))
+      // await dispatch(actions.user.login({...result.data}))
     })
     
   }

@@ -1,9 +1,10 @@
 import React from 'react';
-import { BrowserRouter, Route, NavLink ,Switch} from 'react-router-dom'
-import { connect } from 'react-redux';
-import actions from 'selfRedux/actions';
-import { userIsAuthenticatedRedir, userIsNotAuthenticatedRedir, userIsAdminRedir,
-         userIsAuthenticated, userIsNotAuthenticated } from '../auth.entry';
+import { BrowserRouter, Route, NavLink ,Switch,MemoryRouter} from 'react-router-dom';
+
+// import { connect } from 'react-redux';
+// import actions from 'selfRedux/actions';
+// import { userIsAuthenticatedRedir, userIsNotAuthenticatedRedir, userIsAdminRedir,
+//          userIsAuthenticated, userIsNotAuthenticated } from '../auth.entry';
 //路由
 import router from './router';
 import { FadeIn } from "animate-components";
@@ -21,6 +22,8 @@ message.config({
   duration: 2,
 });
 
+import User from './user/User';
+
 export default class App extends React.Component{
     constructor(props, context){
       super(props, context);
@@ -37,23 +40,24 @@ export default class App extends React.Component{
       let result = await api('/authority/initLogin');
       this.setState({isCheck:false})
       if(result.success){
-        await this.props.store.dispatch(actions.user.login({...result.data}))
+        // await this.props.store.dispatch(actions.user.login({...result.data}))
       }
     }
 
     initComponent(item){
-      let componentName = connect((state) => {
-            return {store:state.default , actions };
-          })(item.name);
+      // let componentName = connect((state) => {
+      //       return {store:state.default , actions };
+      //     })(item.name);
 
-      return item.path == '/login'?
-              userIsNotAuthenticatedRedir(componentName)
-              :userIsAuthenticatedRedir(componentName);
+      // return item.path == '/login'?
+      //         userIsNotAuthenticatedRedir(componentName)
+      //         :userIsAuthenticatedRedir(componentName);
     }
 
     render(){
         let {isCheck} = this.state;
         if(isCheck) return null;
+        const supportsHistory = 'pushState' in window.history
         return (
           <Navigator ref='navigator' >
             <BrowserRouter
@@ -61,7 +65,6 @@ export default class App extends React.Component{
             >
                 <div style={{width:'100%',height:'100%'}}>
                 {router.map((item,index) =>{
-                  let Component = this.initComponent(item);
                   return (
                         <Route  
                             key={index}
@@ -73,7 +76,7 @@ export default class App extends React.Component{
                               }
                               return (
                                 <FadeIn style={{width:'100%',height:'100%'}} key={index} duration=".75s" timingFunction="ease-out">
-                                  <Component {...props} />
+                                  <item.name {...props} />
                                 </FadeIn>
                               )
                             }}
